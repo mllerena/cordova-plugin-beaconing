@@ -138,11 +138,13 @@ import CoreLocation
         print(newBeaconList)
 
         let uuid = UUID(uuidString: newBeaconList[0]) // UUID(uuidString: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")
-        let major: CLBeaconMajorValue = CLBeaconMajorValue(Int(newBeaconList[1])!) // XXXX
-        let minor: CLBeaconMinorValue = CLBeaconMinorValue(Int(newBeaconList[2])!) // XXXX
+        //let major: CLBeaconMajorValue = CLBeaconMajorValue(Int(newBeaconList[1])!) // XXXX
+        //let minor: CLBeaconMinorValue = CLBeaconMinorValue(Int(newBeaconList[2])!) // XXXX
         let id: String = newBeaconList[3] // "beaconName"
 
-        let region = CLBeaconRegion(proximityUUID: uuid!, major: major, minor: minor, identifier: id)
+        //let region = CLBeaconRegion(proximityUUID: uuid!, major: major, minor: minor, identifier: id)
+      
+        let region = CLBeaconRegion(proximityUUID: uuid!, identifier: id)
 
 //        self.locationManager.startRangingBeacons( in: region)
         self.locationManager.startRangingBeacons(in: region)
