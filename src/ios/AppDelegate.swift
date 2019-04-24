@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             print("RANGED \(beacons.count) BEACONS")
             if((beacons[0].proximity == .immediate && range == 0) || (beacons[0].proximity == .near && range == 1) || (beacons[0].proximity == .far && range == 2)){
                 let notification = UILocalNotification()
-                notification.alertBody = msg
+                notification.alertBody = "Send door native: " + beacons[0].minor
                 notification.soundName = "Default"
                 UIApplication.shared.scheduleLocalNotification(notification)
                 //After notification is sent, stop ranging and keep monitoring.
@@ -90,9 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         
         //Application will go to foreground. Stop monitoring and remove the delegate.
-        setRegion()
-        locationManager!.delegate = nil
-        locationManager!.stopMonitoring(for: beaconRegion)
+        
+        //setRegion()
+        //locationManager!.delegate = nil
+        //locationManager!.stopMonitoring(for: beaconRegion)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -108,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //Get UUID
         var mUuid = UserDefaults.standard.object(forKey: "mUuid")
         if(mUuid == nil){
-            mUuid = "00000000000000000000000000000000"
+            mUuid = "00000000000000000000000000000100"
         }
         
         //Format UUID
@@ -156,7 +157,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let mUUID = UUID(uuidString: formattedUuid)!
         
         //Define the region
-        beaconRegion = CLBeaconRegion(proximityUUID: mUUID, major: CLBeaconMajorValue(majorInt), minor: CLBeaconMinorValue(minorInt), identifier: "MyBeacon")
+        //beaconRegion = CLBeaconRegion(proximityUUID: mUUID, major: CLBeaconMajorValue(majorInt), minor: CLBeaconMinorValue(minorInt), identifier: "region_Keefob")
+        beaconRegion = CLBeaconRegion(proximityUUID: mUUID, identifier: "region_Keefob")
     }
 
 }
