@@ -15,8 +15,7 @@ import CoreLocation
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
 
-        // this can be placed as callable function, but let's be real, you'll always need to authorize
-        self.locationManager.requestAlwaysAuthorization()
+        
         
         // set up delegate ids
         delegateIds = [
@@ -27,6 +26,32 @@ import CoreLocation
         ]
         
     }
+    
+    // the listeners get called based on the functions in ionic .ts code
+    // they provide callback ids, which are used to send delegate results to ionic 
+  @objc(requestAlwaysAuthorization:) // Declare your function name.
+  func requestAlwaysAuthorization(command: CDVInvokedUrlCommand) { // write the function code.
+    
+    self.commandDelegate.run {
+        print("requestAlwaysAuthorization", command.callbackId)
+        // get the callbackid
+        //self.delegateIds["rangeBeaconId"] = command.callbackId!
+        /*
+         * Always assume that the plugin will fail.
+         * Even if in this example, it can't.
+         */
+        
+        // this can be placed as callable function, but let's be real, you'll always need to authorize
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // Set the plugin result to fail.
+        let pluginResult = CDVPluginResult (status: CDVCommandStatus_OK);
+        
+        pluginResult?.setKeepCallbackAs(true)
+        // Send the function result back to Cordova.
+        self.commandDelegate!.send(pluginResult, callbackId: command.callbackId);
+    }
+  }
     
     // the listeners get called based on the functions in ionic .ts code
     // they provide callback ids, which are used to send delegate results to ionic 
