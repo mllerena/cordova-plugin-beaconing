@@ -45,7 +45,7 @@ import CoreLocation
         self.locationManager.requestAlwaysAuthorization()
         
         // Set the plugin result to fail.
-        let pluginResult = CDVPluginResult (status: CDVCommandStatus_OK);
+        let pluginResult = CDVPluginResult (status: CDVCommandStatus_NO_RESULT);
         
         pluginResult?.setKeepCallbackAs(true)
         // Send the function result back to Cordova.
