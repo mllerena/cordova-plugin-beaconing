@@ -37,4 +37,10 @@ Beaconing.stopMonitorBeacons = function (options, onSuccess, onError) {
     exec(onSuccess, onError, PLUGIN_NAME, "stopMonitorBeacons", [options]);
 };
 
+Beaconing.requestAlwaysAuthorization = function (options, onSuccess, onError) {
+    exec(onSuccess, onError, PLUGIN_NAME, "requestAlwaysAuthorization", [options]);
+};
+
+
+
 module.exports = Beaconing;
