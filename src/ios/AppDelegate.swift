@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var msg = ""
     var beaconRegion: CLBeaconRegion!
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //Request location authorization which is needed for the beacons scan. Don't forget to 
         //define the "Privacy - Location Always Usage Description" in the Info.plist file
         locationManager = CLLocationManager()
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             print("RANGED \(beacons.count) BEACONS")
             if((beacons[0].proximity == .immediate && range == 0) || (beacons[0].proximity == .near && range == 1) || (beacons[0].proximity == .far && range == 2)){
                 let notification = UILocalNotification()
-                notification.alertBody = "Send door native: " + beacons[0].minor
+                notification.alertBody = "Send door native: " + beacons[0].minor.stringValue
                 notification.soundName = "Default"
                 UIApplication.shared.scheduleLocalNotification(notification)
                 //After notification is sent, stop ranging and keep monitoring.
@@ -107,14 +107,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     //Set the monitoring region to scan
     func setRegion(){
         //Get UUID
-        var mUuid = UserDefaults.standard.object(forKey: "mUuid")
+        var mUuid = "00000000-0000-0000-0000-000000000100"
         if(mUuid == nil){
-            mUuid = "00000000000000000000000000000100"
+            mUuid = "00000000-0000-0000-0000-000000000100"
         }
         
         //Format UUID
         let uuidStr = mUuid as! String
-        formattedUuid = "\(uuidStr.substring(with: 0..<8))-\(uuidStr.substring(with: 8..<12))-\(uuidStr.substring(with: 12..<16))-\(uuidStr.substring(with: 16..<20))-\(uuidStr.substring(with: 20..<32))"
+        //formattedUuid = "\(uuidStr.substring(with: 0..<8))-\(uuidStr.substring(with: 8..<12))-\(uuidStr.substring(with: 12..<16))-\(uuidStr.substring(with: 16..<20))-\(uuidStr.substring(with: 20..<32))"
         
         print("FORMATTED UUID: \(formattedUuid)")
         
@@ -154,7 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //Assign range
         range = mRange
         
-        let mUUID = UUID(uuidString: formattedUuid)!
+        let mUUID = UUID(uuidString: mUuid)!
         
         //Define the region
         //beaconRegion = CLBeaconRegion(proximityUUID: mUUID, major: CLBeaconMajorValue(majorInt), minor: CLBeaconMinorValue(minorInt), identifier: "region_Keefob")
