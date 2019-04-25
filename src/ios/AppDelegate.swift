@@ -9,10 +9,9 @@
 import UIKit
 import CoreLocation
 
-@UIApplicationMain
+//@UIApplicationMain
 //extension AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-
-extension UIApplicationDelegate: UIResponder, CLLocationManagerDelegate {
+extension AppDelegate {
 
     var window: UIWindow?
     var locationManager: CLLocationManager!
