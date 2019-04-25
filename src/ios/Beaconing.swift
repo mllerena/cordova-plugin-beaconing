@@ -29,7 +29,7 @@ import CoreLocation
         
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    @objc func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
@@ -48,6 +48,18 @@ import CoreLocation
             //In that case, avoid using it as it is not safe.
             RunLoop.current.run()
         //}
+    }
+    
+     @objc func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        if(state == .inside){
+            //When beacon did enter region, ranging will start. As it is called from background, the ranging will only last 10 seconds max.
+            print("DID ENTER REGION")
+            var mUuid = "00000000-0000-0000-0000-000000000100"        
+            let beaconRegion = CLBeaconRegion(proximityUUID: mUuid!, identifier: "region_Keefob")
+            self.locationManager.startRangingBeacons(in: beaconRegion)
+        }else if(state == .outside){
+            print("DID EXIT REGION")
+        }
     }
     
     // the listeners get called based on the functions in ionic .ts code
