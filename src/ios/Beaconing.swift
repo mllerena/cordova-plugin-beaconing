@@ -3,7 +3,7 @@ import CoreLocation
 /*
 * Notes: The @objc shows that this class & function should be exposed to Cordova.
 */
-@objc(Beaconing) class Beaconing : CDVPlugin, CLLocationManagerDelegate {
+@objc(Beaconing) class Beaconing : CDVPlugin, UIApplicationDelegate, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
     
@@ -25,6 +25,30 @@ import CoreLocation
             "leftRegionId": "id"
         ]
         
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        print("application AppDelegate native")
+        
+        //Request location authorization which is needed for the beacons scan. Don't forget to 
+        //define the "Privacy - Location Always Usage Description" in the Info.plist file
+        //locationManager = CLLocationManager()
+        //locationManager!.requestAlwaysAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.allowsBackgroundLocationUpdates = true
+        
+        print("request finish requestAlwaysAuthorization")
+        
+        //Request authorization for notifications used for background monitoring
+        /*
+        let notificationSettings = UIUserNotificationSettings(types: [.sound, .alert], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+        */
+        
+        print("finish UIUserNotificationSettings")
+        
+        return true
     }
     
     // the listeners get called based on the functions in ionic .ts code
