@@ -11,7 +11,7 @@ import CoreLocation
 
 //@UIApplicationMain
 //extension AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-extension AppDelegate {
+extension UIApplicationDelegate {
 
     var window: UIWindow?
     var locationManager: CLLocationManager!
