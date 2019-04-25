@@ -15,8 +15,7 @@ import CoreLocation
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
         
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.allowsBackgroundLocationUpdates = true
+        
         
         
         // set up delegate ids
@@ -78,7 +77,10 @@ import CoreLocation
          */
         
         // this can be placed as callable function, but let's be real, you'll always need to authorize
+        //self.locationManager.requestAlwaysAuthorization()
+        
         self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.allowsBackgroundLocationUpdates = true
         
         // Set the plugin result to fail.
         let pluginResult = CDVPluginResult (status: CDVCommandStatus_NO_RESULT);
