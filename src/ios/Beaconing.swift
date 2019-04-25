@@ -62,6 +62,7 @@ import CoreLocation
         }
     }
     
+    
     // the listeners get called based on the functions in ionic .ts code
     // they provide callback ids, which are used to send delegate results to ionic 
   @objc(requestAlwaysAuthorization:) // Declare your function name.
