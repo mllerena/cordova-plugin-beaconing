@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var msg = ""
     var beaconRegion: CLBeaconRegion!
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //Request location authorization which is needed for the beacons scan. Don't forget to 
         //define the "Privacy - Location Always Usage Description" in the Info.plist file
         locationManager = CLLocationManager()
