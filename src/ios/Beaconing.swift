@@ -37,11 +37,11 @@ import CoreLocation
         print("Connect applicationDidEnterBackground")
         
         //if(UserDefaults.standard.bool(forKey: "mBGon")){
-            var mUuid = "00000000-0000-0000-0000-000000000100"
-        
-            let beaconRegion = CLBeaconRegion(proximityUUID: mUuid!, identifier: "region_Keefob")
-            self.locationManager!.delegate = self
-            self.locationManager!.startMonitoring(for: beaconRegion)
+            var mUuidstr = "00000000-0000-0000-0000-000000000100"
+            let mUUID = UUID(uuidString: mUuidstr)!
+            let beaconRegion = CLBeaconRegion(proximityUUID: mUUID, identifier: "region_Keefob")
+            self.locationManager.delegate = self
+            self.locationManager.startMonitoring(for: beaconRegion)
             //RunLoop was necessary in order to work properly inbackground for iPad Mini device with iOS 9.3.1.
             //In some newer devices and iOS versions it may not be necessary.
             //In that case, avoid using it as it is not safe.
@@ -53,8 +53,9 @@ import CoreLocation
         if(state == .inside){
             //When beacon did enter region, ranging will start. As it is called from background, the ranging will only last 10 seconds max.
             print("DID ENTER REGION")
-            var mUuid = "00000000-0000-0000-0000-000000000100"        
-            let beaconRegion = CLBeaconRegion(proximityUUID: mUuid!, identifier: "region_Keefob")
+            var mUuidstr = "00000000-0000-0000-0000-000000000100"
+            let mUUID = UUID(uuidString: mUuidstr)!
+            let beaconRegion = CLBeaconRegion(proximityUUID: mUUID, identifier: "region_Keefob")
             self.locationManager.startRangingBeacons(in: beaconRegion)
         }else if(state == .outside){
             print("DID EXIT REGION")
