@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-@UIApplicationMain
+//@UIApplicationMain
 class AppDelegateBeaconsKeeFob: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
