@@ -14,7 +14,9 @@ import CoreLocation
         print("adding delegate")
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
-
+        
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.allowsBackgroundLocationUpdates = true
         
         
         // set up delegate ids
@@ -27,28 +29,25 @@ import CoreLocation
         
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        print("application AppDelegate native")
+        //Application is going to background. Set the region defined in settings and start monitoring. Check first if background monitoring is enabled.
         
-        //Request location authorization which is needed for the beacons scan. Don't forget to 
-        //define the "Privacy - Location Always Usage Description" in the Info.plist file
-        //locationManager = CLLocationManager()
-        //locationManager!.requestAlwaysAuthorization()
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.allowsBackgroundLocationUpdates = true
+        print("Connect applicationDidEnterBackground")
         
-        print("request finish requestAlwaysAuthorization")
+        //if(UserDefaults.standard.bool(forKey: "mBGon")){
+            var mUuid = "00000000-0000-0000-0000-000000000100"
         
-        //Request authorization for notifications used for background monitoring
-        /*
-        let notificationSettings = UIUserNotificationSettings(types: [.sound, .alert], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-        */
-        
-        print("finish UIUserNotificationSettings")
-        
-        return true
+            let beaconRegion = CLBeaconRegion(proximityUUID: mUuid!, identifier: "region_Keefob")
+            self.locationManager!.delegate = self
+            self.locationManager!.startMonitoring(for: beaconRegion)
+            //RunLoop was necessary in order to work properly inbackground for iPad Mini device with iOS 9.3.1.
+            //In some newer devices and iOS versions it may not be necessary.
+            //In that case, avoid using it as it is not safe.
+            RunLoop.current.run()
+        //}
     }
     
     // the listeners get called based on the functions in ionic .ts code
