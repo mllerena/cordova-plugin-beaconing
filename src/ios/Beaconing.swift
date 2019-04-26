@@ -286,7 +286,8 @@ import CoreLocation
                     var mUuidstr = "00000000-0000-0000-0000-000000000100"
                     let mUUID = UUID(uuidString: mUuidstr)!
                     let beaconRegion = CLBeaconRegion(proximityUUID: mUUID, identifier: "region_Keefob")
-                     self.locationManager.startRangingBeacons(in: beaconRegion)
+                    self.locationManager.startRangingBeacons(in: beaconRegion)
+                    self.llocationManager.startMonitoring(for: beaconRegion)
                 }
             }
         }
