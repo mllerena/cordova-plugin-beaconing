@@ -28,6 +28,17 @@ import CoreLocation
         
     }
     
+    @objc func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        print("application AppDelegate native beaconing")
+        
+        //Request location authorization which is needed for the beacons scan. Don't forget to 
+        //define the "Privacy - Location Always Usage Description" in the Info.plist file
+        self.locationManager.requestAlwaysAuthorization()      
+        
+        return true
+    }
+    
     @objc func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -313,6 +324,7 @@ import CoreLocation
                                            (beacons.first?.minor.stringValue)!,
                                            String(beacons.first?.rssi ?? 0)]
         
+        //locationManager!.stopRangingBeacons(in: beaconRegion)
         
         let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: returnBeaconArray);
         
