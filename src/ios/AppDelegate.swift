@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-@UIApplicationMain
+//@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 //class AppDelegate: CLLocationManagerDelegate {
 
