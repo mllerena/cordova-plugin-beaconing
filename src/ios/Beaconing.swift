@@ -83,7 +83,7 @@ import CoreLocation
         //self.locationManager.requestAlwaysAuthorization()
         
         self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.allowsBackgroundLocationUpdates = true
+        //self.locationManager.allowsBackgroundLocationUpdates = true
         
         // Set the plugin result to fail.
         let pluginResult = CDVPluginResult (status: CDVCommandStatus_NO_RESULT);
