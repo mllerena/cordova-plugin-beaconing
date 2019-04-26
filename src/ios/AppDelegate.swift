@@ -12,7 +12,7 @@ import CoreLocation
 
 //@UIApplicationMain
 //extension AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-extension AppDelegate: CLLocationManagerDelegate {
+class AppDelegate: CLLocationManagerDelegate {
 
     class func load() {
         {
