@@ -9,15 +9,12 @@
 import ObjectiveC
 import UIKit
 import CoreLocation
+import AppDelegate
 
 //@UIApplicationMain
 //extension AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 extension AppDelegate: CLLocationManagerDelegate {
 
-    
-    var locationManager: CLLocationManager!
-    
-        
     class func load() {
         {
             let `class` = AppDelegate
@@ -32,8 +29,8 @@ extension AppDelegate: CLLocationManagerDelegate {
             } else {
             method_exchangeImplementations(originalMethod, swizzledMethod)
             }
-            
-        }
+        } 
+    }
         
         
     func xxx_application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -42,17 +39,15 @@ extension AppDelegate: CLLocationManagerDelegate {
         
         //Request location authorization which is needed for the beacons scan. Don't forget to 
         //define the "Privacy - Location Always Usage Description" in the Info.plist file
-        self.locationManager = CLLocationManager()
-        self.locationManager.delegate = self
-        self.locationManager.requestAlwaysAuthorization()   
+        
+        var locationManager: CLLocationManager!
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()   
         
         return xxx_application(application, didFinishLaunchingWithOptions: launchOptions)
         
     }
-    
-    
-    
-    
+ 
     
 }
-
