@@ -3,7 +3,7 @@ import CoreLocation
 /*
 * Notes: The @objc shows that this class & function should be exposed to Cordova.
 */
-@objc(Beaconing) class Beaconing : CDVPlugin, UIApplicationDelegate, CLLocationManagerDelegate {
+@objc(Beaconing) class Beaconing : CDVPlugin, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
     
@@ -28,37 +28,7 @@ import CoreLocation
         
     }
     
-    @objc func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        print("application AppDelegate native beaconing")
-        
-        //Request location authorization which is needed for the beacons scan. Don't forget to 
-        //define the "Privacy - Location Always Usage Description" in the Info.plist file
-        self.locationManager.requestAlwaysAuthorization()      
-        
-        return true
-    }
     
-    @objc func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        //Application is going to background. Set the region defined in settings and start monitoring. Check first if background monitoring is enabled.
-        
-        print("Connect applicationDidEnterBackground")
-        
-        //if(UserDefaults.standard.bool(forKey: "mBGon")){
-            var mUuidstr = "00000000-0000-0000-0000-000000000100"
-            let mUUID = UUID(uuidString: mUuidstr)!
-            let beaconRegion = CLBeaconRegion(proximityUUID: mUUID, identifier: "region_Keefob")
-            self.locationManager.delegate = self
-            self.locationManager.startMonitoring(for: beaconRegion)
-            //RunLoop was necessary in order to work properly inbackground for iPad Mini device with iOS 9.3.1.
-            //In some newer devices and iOS versions it may not be necessary.
-            //In that case, avoid using it as it is not safe.
-            RunLoop.current.run()
-        //}
-    }
     
      @objc func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         if(state == .inside){
