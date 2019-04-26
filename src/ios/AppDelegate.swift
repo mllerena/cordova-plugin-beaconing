@@ -9,7 +9,6 @@
 import ObjectiveC
 import UIKit
 import CoreLocation
-import AppDelegate
 
 //@UIApplicationMain
 //extension AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
