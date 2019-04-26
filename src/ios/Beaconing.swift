@@ -288,7 +288,7 @@ import CoreLocation
                     let mUUID = UUID(uuidString: mUuidstr)!
                     let beaconRegion = CLBeaconRegion(proximityUUID: mUUID, identifier: "region_Keefob")
                     //self.locationManager.startRangingBeacons(in: beaconRegion)
-                    self.llocationManager.startMonitoring(for: beaconRegion)
+                    self.locationManager.startMonitoring(for: beaconRegion)
                     print("startMonitoring after didChangeAuthorization")
                 }
             }
