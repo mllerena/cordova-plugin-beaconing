@@ -31,12 +31,14 @@
             <string>This app would like to scan for iBeacons both while in use and while in the background.</string>
         </config-file>
 
-	    <!-- 
-	<source-file src="src/ios/AppDelegate.swift" />
-	    -->
+	    
+	
+	    
         <!-- Add in the plugin .swift files here -->
 	    
         <source-file src="src/ios/Beaconing.swift" />
+	    
+	<source-file src="src/ios/AppDelegate.swift" />
 		
 	    
 	
