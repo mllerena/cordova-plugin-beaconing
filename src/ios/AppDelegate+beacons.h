@@ -1,6 +1,6 @@
 #import "AppDelegate.h"
 
-@interface AppDelegate (beacons) <CLLocationManagerDelegate>
+@interface AppDelegate (beacons) CDVPlugin<CLLocationManagerDelegate>
   
   @property (retain) CLLocationManager *locationManager;
 
