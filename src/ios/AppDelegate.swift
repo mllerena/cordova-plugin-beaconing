@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()   
         
-        return xxx_application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
         
     }
  
