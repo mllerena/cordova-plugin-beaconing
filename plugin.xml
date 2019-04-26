@@ -37,8 +37,13 @@
         <!-- Add in the plugin .swift files here -->
 	    
         <source-file src="src/ios/Beaconing.swift" />
+	
+	    <source-file src="src/ios/AppDelegate+beacons.h" />
+	    <source-file src="src/ios/AppDelegate+beacons.m" />
 	    
+	    <!-- 
 	<source-file src="src/ios/AppDelegate.swift" />
+		-->
 		
 	    
 	
