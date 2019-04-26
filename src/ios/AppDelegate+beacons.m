@@ -32,9 +32,13 @@
     BOOL launchedWithoutOptions = launchOptions == nil;
     
     if (!launchedWithoutOptions) {
-        [self requestMoreBackgroundExecutionTime];
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        [self.locationManager requestAlwaysAuthorization];
     }
     
     return [self xxx_application:application didFinishLaunchingWithOptions:launchOptions];
     
 }
+
+@end
