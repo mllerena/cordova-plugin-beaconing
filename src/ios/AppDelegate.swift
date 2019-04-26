@@ -10,10 +10,11 @@ import ObjectiveC
 import UIKit
 import CoreLocation
 
-//@UIApplicationMain
-//extension AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-class AppDelegate: CLLocationManagerDelegate {
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+//class AppDelegate: CLLocationManagerDelegate {
 
+    /*
     class func load() {
         {
             let `class` = AppDelegate
@@ -30,9 +31,9 @@ class AppDelegate: CLLocationManagerDelegate {
             }
         } 
     }
+      */  
         
-        
-    func xxx_application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         print("application AppDelegate native beaconing")
         
