@@ -279,15 +279,17 @@ import CoreLocation
     // MARK: Delegate functions
     
     @objc func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("Permission granted!")
+        
         if(status == .authorizedAlways){
+            print("Permission granted location!")
             if(CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self)){
                 if(CLLocationManager.isRangingAvailable()){
                     var mUuidstr = "00000000-0000-0000-0000-000000000100"
                     let mUUID = UUID(uuidString: mUuidstr)!
                     let beaconRegion = CLBeaconRegion(proximityUUID: mUUID, identifier: "region_Keefob")
-                    self.locationManager.startRangingBeacons(in: beaconRegion)
+                    //self.locationManager.startRangingBeacons(in: beaconRegion)
                     self.llocationManager.startMonitoring(for: beaconRegion)
+                    print("startMonitoring after didChangeAuthorization")
                 }
             }
         }
